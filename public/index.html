@@ -16,6 +16,7 @@
 				</div>
 				<div ng-repeat="network in main.data | toArray:true | orderBy: '-count'">
 					<button type="click" ng-click="main.vote(network.$key)">{{network.name}}</button>{{network.count}}
+					<button type="click" ng-click="main.delete(network.$key)">Delete</button>
 				</div>
 			</div>
 		</div>

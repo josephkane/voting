@@ -26,6 +26,11 @@ angular.module('app', ['angular.filter'])
 				.then(() => main.nomination = '');
 		}
 
+		main.delete = function (id) {
+			return firebase.database().ref(`networks/${id}`)
+				.set(null)
+		}
+
 		firebase.database().ref('/networks').on('value', (snap) => {
 			main.data = snap.val();
 			$timeout();
