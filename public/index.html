@@ -10,13 +10,14 @@
 		<div ng-app="app">
 			<div ng-controller="MainCtrl as main">
 				<h1>{{main.header}}</h1>
-				<div ng-repeat="(id, network) in main.data">
-					<button type="click" ng-click="main.vote(id, network)">{{network.name}}</button>{{network.count}}
+				<div ng-repeat="network in main.data | toArray:true | orderBy: '-count'">
+					<button type="click" ng-click="main.vote(network.$key)">{{network.name}}</button>{{network.count}}
 				</div>
 			</div>
 		</div>
 		<script src="lib/firebase/firebase.js"></script>
 		<script src="lib/angular/angular.min.js"></script>
+		<script src="lib/angular-filter/dist/angular-filter.js"></script>
 		<script src="main.js"></script>
 	</body>
 </html>

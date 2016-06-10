@@ -1,4 +1,4 @@
-angular.module('app', [])
+angular.module('app', ['angular.filter'])
 	.config(() => {
 		firebase.initializeApp({
 	    apiKey: "AIzaSyDGgFkrZTuDhq5XZ8BJ2zlmvLJWA3C9lLU",
@@ -12,7 +12,7 @@ angular.module('app', [])
 
 		main.header = "Who is the greatest?";
 
-		main.vote = function (id, network) {
+		main.vote = function (id) {
 			return firebase.database().ref(`networks/${id}`)
 				.transaction((post) => {
 				post.count += 1;
