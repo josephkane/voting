@@ -7,8 +7,16 @@
 		<link rel="stylesheet" href="main.css">
 	</head>
 	<body>
-		<h1>Who is the greatest?</h1>
-
+		<div ng-app="app">
+			<div ng-controller="MainCtrl as main">
+				<h1>{{main.header}}</h1>
+				<div ng-repeat="(id, network) in main.data">
+					<button type="click" ng-click="main.vote(id, network)">{{network.name}}</button>{{network.count}}
+				</div>
+			</div>
+		</div>
+		<script src="lib/firebase/firebase.js"></script>
+		<script src="lib/angular/angular.min.js"></script>
 		<script src="main.js"></script>
 	</body>
 </html>
