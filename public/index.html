@@ -10,6 +10,10 @@
 		<div ng-app="app">
 			<div ng-controller="MainCtrl as main">
 				<h1>{{main.header}}</h1>
+				<div>
+					<input type="text" ng-model="main.nomination">
+					<button type="click" ng-click="main.nominate(main.nomination)">Nominate!</button>
+				</div>
 				<div ng-repeat="network in main.data | toArray:true | orderBy: '-count'">
 					<button type="click" ng-click="main.vote(network.$key)">{{network.name}}</button>{{network.count}}
 				</div>

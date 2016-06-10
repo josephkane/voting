@@ -20,6 +20,12 @@ angular.module('app', ['angular.filter'])
 			})
 		}
 
+		main.nominate = function (name) {
+			firebase.database().ref('/networks')
+				.push({name: name, count: 0})
+				.then(() => main.nomination = '');
+		}
+
 		firebase.database().ref('/networks').on('value', (snap) => {
 			main.data = snap.val();
 			$timeout();
