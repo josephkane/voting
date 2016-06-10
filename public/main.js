@@ -13,13 +13,14 @@ angular.module('app', [])
 		main.header = "Who is the greatest?";
 
 		main.vote = function (id, network) {
-			network.count += 1;
-			console.log("id: ", id);
-			console.log("network: ", network);
+			return firebase.database().ref(`networks/${id}`)
+				.transaction((post) => {
+				post.count += 1;
+				return post;
+			})
 		}
 
 		firebase.database().ref('/networks').on('value', (snap) => {
-			console.log("snap: ", snap.val());
 			main.data = snap.val();
 			$timeout();
 		})
